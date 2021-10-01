@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kanye;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
@@ -25,7 +26,9 @@ class HomeController extends Controller
     {
         if(Auth::guest() == false){
             try{
+
                 $kanye_result = $this->multiply_kanye(5);
+Kanye::storeUpdateKanye($kanye_result);
                 return view('welcome')->with(compact('kanye_result'));
             }catch(RequestException $e){
                 dd($e->getMessage());
